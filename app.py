@@ -1,6 +1,9 @@
 import streamlit as st
 
-st.set_page_config(page_title="Food Delivery", page_icon="🍽️", layout="wide")
+st.set_page_config(page_title="BYTE.ME", page_icon="images/favicon.png", layout="wide")
+
+# The logo sits at the top of the menu. When the menu is folded away, the small icon shows instead.
+st.logo("images/logo.png", size="large", icon_image="images/favicon.png")
 
 # Nobody is logged in and the cart is empty until we say otherwise.
 if "user" not in st.session_state:
@@ -38,6 +41,20 @@ st.markdown(
         border-radius: 14px;
         padding: 1rem;
         margin-bottom: 0.7rem;
+    }
+    /* The dish photo fills a box of the same size on every card. */
+    .dish-photo {
+        height: 180px;
+        background-size: cover;
+        background-position: center;
+        border-radius: 10px;
+        margin-bottom: 0.5rem;
+    }
+    .no-photo {
+        font-size: 4rem;
+        text-align: center;
+        line-height: 180px;
+        background: #fff7ed;
     }
     </style>
     """,

@@ -13,7 +13,7 @@ st.markdown(
 conn = sqlite3.connect("database/database.db")
 orders = conn.execute(
     "SELECT orders.id, orders.order_number, orders.status, orders.total_price, orders.payment_status, "
-    "orders.notes, users.name, restaurant.name, user_addresses.address "
+    "orders.notes, users.name, restaurant.name, user_addresses.address, user_addresses.city, user_addresses.phone "
     "FROM orders "
     "JOIN users ON users.id = orders.user_id "
     "JOIN restaurant ON restaurant.id = orders.restaurant_id "
@@ -25,12 +25,17 @@ conn.close()
 if len(orders) == 0:
     st.info("There are no orders yet.")
 
-for order_id, order_number, status, total_price, payment_status, notes, customer, restaurant, address in orders:
+for order_id, order_number, status, total_price, payment_status, notes, customer, restaurant, address, city, phone in orders:
     text = "<div class='card'><h3>" + order_number + "</h3><p>"
     text = text + customer + " ordered from " + restaurant + "<br>"
     text = text + "Total: " + str(total_price) + " EGP · Payment: " + payment_status + "<br>"
     if address:
-        text = text + "Deliver to: " + address + "<br>"
+        text = text + "Deliver to: " + address
+        if city:
+            text = text + ", " + city
+        text = text + "<br>"
+    if phone:
+        text = text + "Phone: " + phone + "<br>"
     if notes:
         text = text + "Notes: " + notes
     text = text + "</p></div>"

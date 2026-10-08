@@ -38,15 +38,16 @@ for product_id, name, price, description, calories, rating, image_url, stock in 
         columns = st.columns(3)
 
     with columns[number % 3]:
+        # Every photo gets the same size box, so the cards line up.
         if image_url:
-            st.image(image_url, width="stretch")
+            photo = "<div class='dish-photo' style=\"background-image: url('" + image_url + "')\"></div>"
         else:
-            st.markdown("<h1 style='text-align: center;'>🍽️</h1>", unsafe_allow_html=True)
+            photo = "<div class='dish-photo no-photo'>🍽️</div>"
 
         # One star for each rating point, so 4.6 shows as ★★★★★ 4.6.
         stars = "★" * round(rating)
         st.markdown(
-            "<div class='card'><h3>" + name + "</h3>"
+            "<div class='card'>" + photo + "<h3>" + name + "</h3>"
             + "<p>" + (description or "") + "</p>"
             + "<p>" + stars + " " + str(rating) + " · " + str(calories) + " kcal</p>"
             + "<strong>" + str(price) + " EGP</strong></div>",
@@ -82,6 +83,7 @@ for product_id, name, price, description, calories, rating, image_url, stock in 
                         "name": name,
                         "price": price,
                         "quantity": quantity,
+                        "stock": stock,
                         "restaurant_id": restaurant_id,
                     })
                     st.success("Added to cart")

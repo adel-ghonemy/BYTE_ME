@@ -21,10 +21,10 @@ There is no test suite. To check that a change works, use `streamlit.testing.v1.
 - **`app.py` runs before every page.** It sets the defaults for `user` and `cart`, holds the one shared CSS block, and builds the menu with `st.navigation`. Which pages go into the menu depends on `st.session_state.user["role"]`. A page that isn't in the menu can't be opened at all, so the screens don't check permissions themselves.
 - **Screens live in `app_pages/`**, not `pages/`. A `pages/` folder would switch Streamlit back to its old auto-listed sidebar and break the role-based menu.
 - **Each screen is self-contained.** It opens its own `sqlite3` connection, runs plain SQL, commits and closes. There is no `services/` layer; the owner chose to keep SQL inline in each screen.
-- **The CSS classes `banner` and `card`** are defined once in `app.py` and used by every screen. The background image is `static/marble.png`, which needs `server.enableStaticServing = true` in `.streamlit/config.toml`. Screens must not set their own `.stApp` background, or it will cover the image.
+- **The CSS classes `banner`, `card` and `dish-photo`** are defined once in `app.py` and used by every screen. A dish photo is a `div` with the photo as its `background-image`, not an `<img>`, because Streamlit's own image styles override sizing rules on `<img>` tags. `app.py` shows `images/logo.png` with `st.logo` and uses `images/favicon.png` as the page icon. The background image is `static/marble.png`, which needs `server.enableStaticServing = true` in `.streamlit/config.toml`. Screens must not set their own `.stApp` background, or it will cover the image.
 - **Session state:**
   - `user` is `None` or `{"id", "name", "role"}`.
-  - `cart` is a list of `{id, name, price, quantity, restaurant_id}`, all from the same restaurant.
+  - `cart` is a list of `{id, name, price, quantity, stock, restaurant_id}`, all from the same restaurant. `stock` is copied in when the dish is added, so the cart's ➕ button can stop at the stock. Checkout checks stock against the database again.
   - `restaurant_id` and `restaurant_name` are set by Home before it switches to Menu.
 - **After login, call `st.rerun()`**, so `app.py` rebuilds the menu and lands on Home. Don't call `st.switch_page` to a page that isn't in the menu yet. Log out works the same way: `st.session_state.clear()` then `st.rerun()`.
 
@@ -36,6 +36,8 @@ There is no test suite. To check that a change works, use `streamlit.testing.v1.
   - `payment_status` and `payments.status`: `pending` / `paid` / `failed` / `refunded`
   - `payment_method`: `cash` / `card` / `wallet`
   - `role`: `customer` / `admin` / `restaurant_owner`
+- **Checkout (`app_pages/cart.py`)** saves city, address and phone in `user_addresses` and delivery notes in `orders.notes`. Card details and the wallet phone number are validated with `if`s but never stored. This is listed under Limits in the README.
+- **`database/add_product_photos.SQL`** sets `image_url` for the 16 demo dishes.
 - **Turn dates into text with `str()` before saving them.** Python 3.12 deprecates saving `date` objects straight into sqlite3.
 - **Order numbers come from the time in milliseconds**, because the column is `UNIQUE`. Seconds clashed when two orders were placed in the same second.
 
