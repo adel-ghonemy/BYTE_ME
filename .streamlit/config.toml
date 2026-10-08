@@ -9,7 +9,3 @@ backgroundColor = "#f6f8fa"
 secondaryBackgroundColor = "#eaeef2"
 textColor = "#1F2328"
 borderColor = "#d0d7de"
-
-# Lets the app show pictures from the static/ folder (the background).
-[server]
-enableStaticServing = true

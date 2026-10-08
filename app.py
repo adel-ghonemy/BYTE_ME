@@ -1,3 +1,4 @@
+import base64
 import streamlit as st
 
 st.set_page_config(page_title="BYTE.ME", page_icon="images/favicon.png", layout="wide")
@@ -11,13 +12,18 @@ if "user" not in st.session_state:
 if "cart" not in st.session_state:
     st.session_state.cart = []
 
+# The background picture, turned into text so it can go straight into the page's style.
+with open("images/background.png", "rb") as picture_file:
+    background = base64.b64encode(picture_file.read()).decode()
+
 # The look of the whole app lives here, so every screen matches.
-# The picture is served from the static/ folder (see .streamlit/config.toml).
 st.markdown(
     """
     <style>
     .stApp {
-        background-image: url("app/static/marble.png");
+        background-image: url("data:image/png;base64,"""
+    + background
+    + """");
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
