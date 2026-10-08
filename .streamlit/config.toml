@@ -1,0 +1,11 @@
+[theme]
+backgroundColor = "transparent"
+secondaryBackgroundColor = "#f6f8fa"
+
+[theme.sidebar]
+backgroundColor = "#f6f8fa"
+secondaryBackgroundColor = "#eaeef2"
+textColor = "#1F2328"
+borderColor = "#d0d7de"
+[server]
+enableStaticServing = true
