@@ -1,5 +1,7 @@
 [theme]
-backgroundColor = "transparent"
+# White, not "transparent": Streamlit uses this color to fill dropdown menus,
+# buttons and pop-ups. The marble picture behind the page comes from app.py.
+backgroundColor = "#ffffff"
 secondaryBackgroundColor = "#f6f8fa"
 # Orange, to match the banners. Main buttons use this color.
 primaryColor = "#e85d04"
