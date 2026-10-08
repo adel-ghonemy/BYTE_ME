@@ -1,11 +1,15 @@
 [theme]
 backgroundColor = "transparent"
 secondaryBackgroundColor = "#f6f8fa"
+# Orange, to match the banners. Main buttons use this color.
+primaryColor = "#e85d04"
 
 [theme.sidebar]
 backgroundColor = "#f6f8fa"
 secondaryBackgroundColor = "#eaeef2"
 textColor = "#1F2328"
 borderColor = "#d0d7de"
+
+# Lets the app show pictures from the static/ folder (the background).
 [server]
 enableStaticServing = true
