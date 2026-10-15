@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BYTE.ME Page Access</title>
+<link rel="stylesheet" href="../assets/brand.css">
+<style>
+  html, body { margin: 0; background: var(--white); }
+  .canvas { width: 1600px; height: 900px; box-sizing: border-box; padding: 40px; display: grid;
+            grid-template-columns: 520px 1fr; gap: 48px; font-family: var(--sans); color: var(--ink); }
+  .lane { font: 700 14px var(--mono); letter-spacing: 0.16em; color: var(--ink-soft); margin-bottom: 18px; }
+  .steps { display: flex; flex-direction: column; gap: 0; }
+  .step { background: #fff; border: 2.5px solid var(--ink); border-radius: 12px; padding: 18px 22px; }
+  .step.hot { border-color: var(--red); background: #FFF0F0; }
+  .chip { display: inline-block; font: 700 13px var(--mono); letter-spacing: 0.12em; color: var(--ink-soft);
+          border: 1.5px solid var(--ink-soft); border-radius: 5px; padding: 2px 8px; margin-bottom: 10px; }
+  .step.hot .chip { background: var(--red); border-color: var(--red); color: #fff; }
+  .step h3 { margin: 0 0 6px; font-size: 25px; font-weight: 600; }
+  .step p { margin: 0; font: 400 16px/1.45 var(--mono); color: var(--ink-soft); }
+  .arrow { height: 44px; display: flex; justify-content: center; }
+  .arrow svg { display: block; }
+  .note { margin-top: 26px; font: 500 16px/1.5 var(--mono); color: var(--ink-soft); border-left: 4px solid var(--red); padding-left: 14px; }
+
+  table { width: 100%; border-collapse: separate; border-spacing: 0; background: #F7F8FA;
+          border: 2px solid rgba(14,17,24,0.10); border-radius: 18px; overflow: hidden; }
+  th, td { padding: 0 20px; height: 56px; border-bottom: 1.5px solid rgba(14,17,24,0.08); }
+  th { font: 700 15px var(--mono); letter-spacing: 0.1em; text-align: center; color: #fff; background: var(--ink); height: 70px; }
+  th:first-child { text-align: left; }
+  th small { display: block; font-weight: 400; letter-spacing: 0; opacity: 0.7; margin-top: 2px; }
+  td { text-align: center; font-size: 26px; }
+  td:first-child { text-align: left; font: 600 21px var(--sans); }
+  td:first-child span { display: inline-block; width: 36px; }
+  td code { font: 400 14px var(--mono); color: var(--ink-soft); margin-left: 8px; }
+  tr.group td { height: 34px; background: #fff; font: 700 13px var(--mono); letter-spacing: 0.16em; color: var(--red-dark); text-align: left; }
+  .yes { color: #16673A; font-weight: 700; }
+  .no { color: rgba(14,17,24,0.22); }
+  tr:last-child td { border-bottom: 0; }
+</style>
+</head>
+<body>
+<div class="canvas">
+  <div>
+    <div class="lane">HOW THE MENU IS BUILT</div>
+    <div class="steps">
+      <div class="step">
+        <span class="chip">EVERY RERUN</span>
+        <h3>app.py runs first</h3>
+        <p>Before any screen, every single time.</p>
+      </div>
+      <div class="arrow"><svg width="20" height="44"><line x1="10" y1="0" x2="10" y2="34" stroke="#0E1118" stroke-width="2.5"/><path d="M2,32 L10,44 L18,32 z" fill="#0E1118"/></svg></div>
+      <div class="step">
+        <span class="chip">SESSION</span>
+        <h3>Who is logged in?</h3>
+        <p>st.session_state.user<br>None, or {"id", "name", "role"}</p>
+      </div>
+      <div class="arrow"><svg width="20" height="44"><line x1="10" y1="0" x2="10" y2="34" stroke="#0E1118" stroke-width="2.5"/><path d="M2,32 L10,44 L18,32 z" fill="#0E1118"/></svg></div>
+      <div class="step hot">
+        <span class="chip">ST.NAVIGATION</span>
+        <h3>Only allowed pages go in</h3>
+        <p>A page that is not in the list<br>cannot be opened at all.</p>
+      </div>
+    </div>
+    <div class="note">Hide what you can't use, instead of showing it and saying no. So the screens never check permissions themselves.</div>
+  </div>
+
+  <div>
+    <div class="lane">WHO SEES WHICH PAGE</div>
+    <table>
+      <tr><th>Page</th><th>Guest<small>not logged in</small></th><th>Customer<small>role: customer</small></th><th>Owner / Admin<small>restaurant_owner · admin</small></th></tr>
+      <tr class="group"><td colspan="4">EVERYONE</td></tr>
+      <tr><td><span>🏠</span>Home</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+      <tr><td><span>🍔</span>Menu</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+      <tr class="group"><td colspan="4">GUESTS ONLY</td></tr>
+      <tr><td><span>🔐</span>Log in · <span>📝</span>Register</td><td class="yes">✓</td><td class="no">—</td><td class="no">—</td></tr>
+      <tr class="group"><td colspan="4">LOGGED IN</td></tr>
+      <tr><td><span>🛒</span>Cart</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+      <tr><td><span>📦</span>My orders</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+      <tr><td><span>👋</span>Log out</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+      <tr class="group"><td colspan="4">OWNERS AND ADMINS</td></tr>
+      <tr><td><span>🏪</span>Add restaurant</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
+      <tr><td><span>🍕</span>Add product</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
+      <tr><td><span>🏷️</span>Add category</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
+      <tr><td><span>📋</span>Manage orders</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
+    </table>
+  </div>
+</div>
+</body>
+</html>

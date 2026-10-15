@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" shape-rendering="crispEdges">
+  <!-- BYTE.ME mark, redrawn as pixels from images/favicon.png so it stays sharp when printed big. -->
+  <defs>
+    <mask id="bite">
+      <rect width="16" height="16" fill="#fff"/>
+      <circle cx="14.6" cy="2.2" r="2.7" fill="#000" shape-rendering="geometricPrecision"/>
+    </mask>
+  </defs>
+  <g mask="url(#bite)">
+    <rect x="1" y="1" width="14" height="14" rx="3" fill="#0E1118" shape-rendering="geometricPrecision"/>
+    <g fill="#F1F2F6">
+      <rect x="5" y="2" width="6" height="1"/>
+      <rect x="4" y="3" width="8" height="1"/>
+      <rect x="3" y="4" width="10" height="2"/>
+      <rect x="4" y="6" width="8" height="1"/>
+      <rect x="5" y="7" width="6" height="1"/>
+    </g>
+  </g>
+  <rect x="2.7" y="9" width="10.6" height="2.4" fill="#FF4B4C"/>
+  <rect x="2.7" y="10.8" width="10.6" height="0.6" fill="#D93D3E"/>
+  <rect x="3.6" y="12.6" width="8.8" height="0.9" fill="#F1F2F6"/>
+</svg>

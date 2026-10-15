@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BYTE.ME Poster</title>
+<!-- Printed size: 1000 x 2000 mm, plus 5 mm extra on each edge for trimming. Build the PDF with: python docs/build.py poster -->
+<!-- Boxes with class="todo" are for the student to write. Replace the whole <span class="todo">…</span> with your words. -->
+<link rel="stylesheet" href="../assets/brand.css">
+<style>
+  @page { size: 1010mm 2010mm; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--paper); }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; font-family: var(--sans); color: var(--ink); }
+  .poster { position: relative; width: 1010mm; height: 2010mm; overflow: hidden; background: var(--paper);
+            background-image:
+              linear-gradient(rgba(14,17,24,0.035) 0.6mm, transparent 0.6mm),
+              linear-gradient(90deg, rgba(14,17,24,0.035) 0.6mm, transparent 0.6mm);
+            background-size: 20mm 20mm; }
+
+  /* ---------- hero (read from far away) ---------- */
+  .hero { position: absolute; left: 0; top: 0; width: 1010mm; height: 455mm; background: var(--ink); overflow: hidden; }
+  .hero .texture { position: absolute; inset: 0; padding: 12mm 18mm; display: flex; flex-wrap: wrap; align-content: flex-start;
+                   justify-content: space-between; column-gap: 14mm; row-gap: 4mm; color: var(--red); opacity: 0.10; }
+  .hero .texture span { font-size: 30mm; line-height: 1.4; }
+  .hero .texture .en { font-family: var(--display); }
+  .hero .texture .ar { font-family: var(--arabic); font-weight: 700; font-size: 32mm; }
+  .hero .glow { position: absolute; right: 40mm; top: 35mm; width: 380mm; height: 380mm; border-radius: 50%;
+                background: radial-gradient(circle, rgba(255,75,76,0.42) 0%, rgba(232,93,4,0.14) 52%, rgba(232,93,4,0) 72%); }
+  .hero .mark { position: absolute; left: 665mm; top: 75mm; width: 300mm; height: 300mm; padding: 14mm; background: var(--paper); border-radius: 46mm;
+               box-shadow: 0 0 0 4mm rgba(255,75,76,0.35); }
+  .hero .text { position: absolute; left: 60mm; top: 100mm; width: 580mm; }
+  .hero .kicker { font-family: var(--mono); font-weight: 700; font-size: 14mm; letter-spacing: 0.22em; color: var(--orange-2); text-transform: uppercase; }
+  .hero h1 { font-family: var(--display); font-weight: 700; font-size: 84mm; line-height: 1; color: var(--paper);
+             margin: 16mm 0 14mm -2mm; letter-spacing: -0.02em; white-space: nowrap; }
+  .hero h1 .dot { color: var(--red); }
+  .hero .tagline { font-family: var(--display); font-size: 40mm; line-height: 1.05; color: var(--red); }
+  .hero .promise { font-size: 19mm; line-height: 1.32; color: var(--paper); opacity: 0.94; margin-top: 14mm; max-width: 560mm; }
+  .hero .todo { font-family: var(--sans); font-size: 15mm; line-height: 1.45; font-weight: 500; }
+
+  /* a row of "pixels" between the dark top and the light body */
+  .band { position: absolute; left: 0; top: 455mm; width: 1010mm; height: 20mm;
+          background:
+            linear-gradient(90deg, var(--red) 50%, var(--ink) 50%) 0 0 / 20mm 10mm repeat-x,
+            linear-gradient(90deg, var(--ink) 50%, var(--red) 50%) 0 10mm / 20mm 10mm repeat-x; }
+
+  /* ---------- body (read up close) ---------- */
+  .body { position: absolute; left: 35mm; top: 510mm; width: 940mm; }
+  h2 { font-family: var(--sans); font-weight: 700; font-size: 40mm; line-height: 1.05; color: var(--ink); margin-bottom: 10mm; letter-spacing: -0.02em; }
+  h2 .num { font-family: var(--display); font-weight: 400; font-size: 13mm; color: var(--red-dark); letter-spacing: 0.08em; margin-right: 8mm; vertical-align: 0.45em; }
+  h2 .ar { font-size: 16mm; font-weight: 600; color: var(--ink-soft); margin-left: 6mm; vertical-align: 0.3em; }
+  h2 .todo { font-size: 17mm; font-weight: 500; vertical-align: 0.35em; letter-spacing: 0; }
+  section { margin-bottom: 24mm; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 20mm; }
+  .card { background: var(--white); border: 0.8mm solid var(--line); border-radius: 6mm; padding: 14mm 16mm; }
+  .card.hot { border: 1.2mm solid var(--red); background: #FFF5F5; }
+  .card h3 { font-size: 17mm; font-weight: 700; margin-bottom: 6mm; }
+  .card p { font-size: 12.5mm; line-height: 1.4; color: var(--ink-soft); }
+  .label { font-family: var(--mono); font-weight: 700; font-size: 9mm; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red-dark); margin-bottom: 4mm; }
+
+  .demo { display: grid; grid-template-columns: 560mm 1fr; gap: 18mm; align-items: start; }
+  .shot { border: 0.8mm solid rgba(14,17,24,0.25); border-radius: 5mm; overflow: hidden; background: #fff; }
+  .shot img { display: block; width: 100%; object-fit: cover; object-position: top left; }
+  .demo .shot img { height: 330mm; object-position: 22% top; }
+  .caption { font-size: 10mm; color: var(--ink-soft); margin-top: 5mm; line-height: 1.35; }
+  ul.features { list-style: none; display: grid; gap: 7.5mm; }
+  ul.features li { display: flex; gap: 6mm; align-items: flex-start; }
+  ul.features .dot { flex: none; width: 7mm; height: 7mm; margin-top: 3.5mm; background: var(--red); }
+  ul.features strong { font-size: 13mm; font-weight: 700; display: block; }
+  ul.features span.d { font-size: 10.5mm; color: var(--ink-soft); line-height: 1.3; display: block; margin-top: 1mm; }
+  .thumbs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14mm; margin-top: 14mm; }
+  .thumbs .shot img { height: 172mm; object-position: 30% top; }
+  .thumbs .caption { margin-top: 3mm; }
+
+  .how { display: grid; grid-template-columns: 1fr 1fr; gap: 16mm; }
+  .how .card { padding: 11mm 12mm 12mm; }
+  .how img { display: block; width: 100%; border-radius: 3mm; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16mm; margin-top: 16mm; }
+  .stat { border-top: 1.2mm solid var(--ink); padding-top: 5mm; }
+  .stat b { font-family: var(--display); font-size: 40mm; line-height: 1; color: var(--red); display: block; }
+  .stat span { font-size: 11mm; color: var(--ink-soft); line-height: 1.3; }
+
+  .foot { position: absolute; left: 35mm; top: 1800mm; width: 940mm; border-top: 0.8mm solid var(--ink);
+          padding-top: 10mm; display: flex; justify-content: space-between; align-items: flex-start; }
+  .chips { display: flex; gap: 4mm; margin: 4mm 0 9mm; }
+  .chips span { font-family: var(--mono); font-size: 10mm; border: 0.6mm solid var(--ink); padding: 1.5mm 4mm; background: #fff; }
+  .who { font-size: 15mm; font-weight: 700; }
+  .who .todo { font-size: 11mm; font-weight: 500; }
+  .meta { font-size: 11mm; margin-top: 3mm; color: var(--ink-soft); }
+  .meta .todo { font-size: 10mm; }
+  .note { font-size: 10mm; color: var(--red-dark); margin-top: 6mm; font-family: var(--mono); }
+  .qr { text-align: center; }
+  .qr .code { background: #fff; padding: 4mm; border: 0.8mm solid var(--ink); display: inline-block; }
+  .qr img { display: block; width: 120mm; height: 120mm; image-rendering: pixelated; }
+  .qr p { font-family: var(--mono); font-size: 8.5mm; color: var(--ink-soft); margin-top: 4mm; line-height: 1.4; }
+  .qr p b { color: var(--ink); }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <div class="hero">
+    <div class="texture">
+      <span class="en">PIZZA</span><span class="ar">بيتزا</span><span class="en">BURGER</span><span class="ar">برجر</span><span class="en">SUSHI</span>
+      <span class="ar">سوشي</span><span class="en">GRILL</span><span class="ar">مشويات</span><span class="en">COLA</span><span class="ar">كشري</span>
+      <span class="en">ORDER</span><span class="ar">اطلب</span><span class="en">BYTE</span><span class="ar">وجبة</span><span class="en">CART</span>
+      <span class="ar">توصيل</span><span class="en">MENU</span><span class="ar">مطعم</span><span class="en">YUM</span><span class="ar">جوعان</span>
+      <span class="en">PIZZA</span><span class="ar">بيتزا</span><span class="en">BURGER</span><span class="ar">برجر</span><span class="en">SUSHI</span>
+      <span class="ar">سوشي</span><span class="en">GRILL</span><span class="ar">مشويات</span><span class="en">COLA</span><span class="ar">كشري</span>
+    </div>
+    <div class="glow"></div>
+    <img class="mark" src="../assets/byteme-mark.svg" alt="BYTE.ME mark">
+    <div class="text">
+      <div class="kicker">Food delivery · Egypt</div>
+      <h1>BYTE<span class="dot">.</span>ME</h1>
+      <div class="tagline"><span class="todo">a short tagline, 2–4 words</span></div>
+      <p class="promise"><span class="todo">one or two sentences: what can someone do with BYTE.ME?</span></p>
+    </div>
+  </div>
+  <div class="band"></div>
+
+  <div class="body">
+    <section>
+      <h2><span class="num">01 · WHY</span><span class="todo">a headline about the problem</span></h2>
+      <div class="two">
+        <div class="card">
+          <div class="label">The problem <span class="ar">المشكلة</span></div>
+          <h3><span class="todo">the problem in 3–5 words</span></h3>
+          <p><span class="todo">2–3 sentences: who is hungry, and what is hard for them today?</span></p>
+        </div>
+        <div class="card hot">
+          <div class="label">Our solution <span class="ar">الحل</span></div>
+          <h3><span class="todo">the solution in 3–5 words</span></h3>
+          <p><span class="todo">2–3 sentences: how does BYTE.ME fix it?</span></p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="num">02 · SEE IT</span>From menu to doorstep.<span class="ar">من القائمة إلى الباب</span></h2>
+      <div class="demo">
+        <div>
+          <div class="shot"><img src="../screenshots/cart.jpg" alt="Cart and checkout screen"></div>
+          <p class="caption">Checkout: two dishes from Pizza King, the delivery address, and a choice of cash, card or mobile wallet. The order summary adds up the total.</p>
+        </div>
+        <ul class="features">
+          <li><span class="dot"></span><div><strong>Find a restaurant</strong><span class="d">Search by name or pick a food type.</span></div></li>
+          <li><span class="dot"></span><div><strong>Menus with photos</strong><span class="d">Every dish shows its price, rating and calories.</span></div></li>
+          <li><span class="dot"></span><div><strong>A smart cart</strong><span class="d">➖ / ➕ stop at the stock. One restaurant per order, because one driver brings it.</span></div></li>
+          <li><span class="dot"></span><div><strong>Checkout in one page</strong><span class="d">City, address, phone, delivery notes, and how to pay.</span></div></li>
+          <li><span class="dot"></span><div><strong>Track your order</strong><span class="d">“My orders” shows each order’s status and total.</span></div></li>
+          <li><span class="dot"></span><div><strong>Tools for owners</strong><span class="d">Add restaurants, dishes and categories, and move orders from pending to completed.</span></div></li>
+        </ul>
+      </div>
+      <div class="thumbs">
+        <div><div class="shot"><img src="../screenshots/home.jpg" alt="Home screen"></div><p class="caption">Home: every restaurant, with search.</p></div>
+        <div><div class="shot"><img src="../screenshots/menu.jpg" alt="Menu screen"></div><p class="caption">Menu: dishes with photos and ratings.</p></div>
+        <div><div class="shot"><img src="../screenshots/manage-orders.jpg" alt="Manage orders screen"></div><p class="caption">Manage orders: for owners and admins.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="num">03 · HOW</span>Plain Python, plain SQL.<span class="ar">بايثون و SQL ببساطة</span></h2>
+      <div class="how">
+        <div class="card">
+          <div class="label">How an order moves</div>
+          <img src="../diagrams/order-flow.png" alt="Order flow diagram">
+        </div>
+        <div class="card">
+          <div class="label">Who sees which page</div>
+          <img src="../diagrams/page-access.png" alt="Page access by role diagram">
+        </div>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>1</b><span>library to install: Streamlit</span></div>
+        <div class="stat"><b>0</b><span>classes: plain variables, ifs and loops</span></div>
+        <div class="stat"><b>12</b><span>Python files, one per screen</span></div>
+        <div class="stat"><b>8</b><span>SQLite tables, from users to payments</span></div>
+      </div>
+    </section>
+  </div>
+
+  <div class="foot">
+    <div>
+      <div class="label">Built with</div>
+      <div class="chips"><span>Python</span><span>Streamlit</span><span>SQLite</span><span>HTML + CSS</span></div>
+      <div class="who"><span class="todo">your name · team or school</span></div>
+      <div class="meta"><span class="todo">event name and year · your email</span></div>
+      <div class="note">A school demo: no real payments, and card details are never saved.</div>
+    </div>
+    <div class="qr">
+      <div class="code"><img src="../assets/qr-app.svg" alt="QR code for byte-me.streamlit.app"></div>
+      <p>Scan to try it<br><b>byte-me.streamlit.app</b></p>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BYTE.ME Database Schema</title>
+<link rel="stylesheet" href="../assets/brand.css">
+<style>
+  html, body { margin: 0; background: var(--white); }
+  .canvas { position: relative; width: 1600px; height: 1000px; font-family: var(--mono); color: var(--ink); }
+  svg { position: absolute; inset: 0; }
+  svg path { fill: none; stroke: #D93D3E; stroke-width: 2.5; }
+  .table { position: absolute; background: #fff; border: 2.5px solid var(--ink); border-radius: 12px; overflow: hidden; }
+  .head { height: 52px; box-sizing: border-box; padding: 0 18px; display: flex; align-items: center;
+          background: var(--ink); color: #fff; font: 700 21px var(--mono); }
+  .col { height: 30px; box-sizing: border-box; padding: 0 18px; display: flex; justify-content: space-between; align-items: center;
+         font-size: 16px; border-top: 1px solid rgba(14,17,24,0.07); }
+  .col em { font-style: normal; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-soft); }
+  .col.pk span { font-weight: 700; }
+  .col.pk em { color: var(--orange); }
+  .col.fk span, .col.fk em { color: var(--red-dark); font-weight: 700; }
+  .col.ts { color: var(--ink-soft); font-size: 13px; background: #F7F8FA; }
+  .legend { position: absolute; left: 40px; top: 830px; width: 1520px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .legend div { background: #F7F8FA; border: 2px solid rgba(14,17,24,0.10); border-radius: 12px; padding: 14px 18px; }
+  .legend b { display: block; font-size: 13px; letter-spacing: 0.14em; color: var(--ink-soft); margin-bottom: 6px; }
+  .legend span { font-size: 16px; }
+  .key { position: absolute; left: 430px; top: 790px; font-size: 15px; color: var(--ink-soft); }
+  .key i { display: inline-block; width: 26px; height: 3px; background: #D93D3E; vertical-align: middle; margin: 0 8px 0 0; }
+</style>
+</head>
+<body>
+<div class="canvas">
+<svg width="1600" height="1000">
+  <defs>
+    <marker id="pk" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#D93D3E" stroke="none"/></marker>
+    <marker id="fk" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6"><circle cx="5" cy="5" r="4" fill="#fff" stroke="#D93D3E" stroke-width="2"/></marker>
+  </defs>
+<path d="M428,137 H405 V107 H384" marker-start="url(#fk)" marker-end="url(#pk)"/>
+<path d="M210,518 V396" marker-start="url(#fk)" marker-end="url(#pk)"/>
+<path d="M428,197 H412 V587 H384" marker-start="url(#fk)" marker-end="url(#pk)"/>
+<path d="M610,518 V396" marker-start="url(#fk)" marker-end="url(#pk)"/>
+<path d="M838,137 H815 V107 H794" marker-start="url(#fk)" marker-end="url(#pk)"/>
+<path d="M1162,167 H1190 V107 H1216" marker-start="url(#fk)" marker-end="url(#pk)"/>
+<path d="M1250,456 V587 H1164" marker-start="url(#fk)" marker-end="url(#pk)"/>
+<path d="M1390,456 V596" marker-start="url(#fk)" marker-end="url(#pk)"/>
+<path d="M792,167 H825 V587 H836" marker-start="url(#fk)" marker-end="url(#pk)"/>
+</svg>
+<div class="table" style="left:40px;top:40px;width:340px"><div class="head">users</div><div class="col pk"><span>id</span><em>PK</em></div><div class="col "><span>name</span><em></em></div><div class="col "><span>email</span><em>UNIQUE</em></div><div class="col "><span>phone</span><em>UNIQUE</em></div><div class="col "><span>password</span><em></em></div><div class="col "><span>role</span><em>CHECK</em></div><div class="col "><span>age</span><em>CHECK</em></div><div class="col "><span>address</span><em></em></div><div class="col "><span>dob</span><em></em></div><div class="col ts"><span>created_at · updated_at</span></div></div>
+<div class="table" style="left:40px;top:520px;width:340px"><div class="head">user_addresses</div><div class="col pk"><span>id</span><em>PK</em></div><div class="col fk"><span>user_id</span><em>FK</em></div><div class="col "><span>address</span><em></em></div><div class="col "><span>city</span><em></em></div><div class="col "><span>phone</span><em></em></div><div class="col ts"><span>created_at · updated_at</span></div></div>
+<div class="table" style="left:430px;top:40px;width:360px"><div class="head">orders</div><div class="col pk"><span>id</span><em>PK</em></div><div class="col fk"><span>user_id</span><em>FK</em></div><div class="col fk"><span>restaurant_id</span><em>FK</em></div><div class="col fk"><span>user_address_id</span><em>FK</em></div><div class="col "><span>order_number</span><em>UNIQUE</em></div><div class="col "><span>status</span><em>CHECK</em></div><div class="col "><span>payment_status</span><em>CHECK</em></div><div class="col "><span>total_price</span><em>CHECK</em></div><div class="col "><span>notes</span><em></em></div><div class="col ts"><span>created_at · updated_at</span></div></div>
+<div class="table" style="left:430px;top:520px;width:360px"><div class="head">payments</div><div class="col pk"><span>id</span><em>PK</em></div><div class="col fk"><span>order_id</span><em>FK · UNIQUE</em></div><div class="col "><span>amount</span><em>CHECK</em></div><div class="col "><span>payment_method</span><em>CHECK</em></div><div class="col "><span>status</span><em>CHECK</em></div><div class="col ts"><span>created_at · updated_at</span></div></div>
+<div class="table" style="left:840px;top:40px;width:320px"><div class="head">order_items</div><div class="col pk"><span>id</span><em>PK</em></div><div class="col fk"><span>order_id</span><em>FK</em></div><div class="col fk"><span>product_id</span><em>FK</em></div><div class="col "><span>quantity</span><em>CHECK</em></div><div class="col "><span>unit_price</span><em>CHECK</em></div><div class="col ts"><span>UNIQUE (order_id, product_id)</span></div></div>
+<div class="table" style="left:840px;top:520px;width:320px"><div class="head">restaurant</div><div class="col pk"><span>id</span><em>PK</em></div><div class="col "><span>name</span><em>UNIQUE</em></div><div class="col "><span>type</span><em></em></div><div class="col "><span>address</span><em></em></div><div class="col "><span>phone</span><em>UNIQUE</em></div><div class="col "><span>opendate</span><em></em></div><div class="col ts"><span>created_at · updated_at</span></div></div>
+<div class="table" style="left:1220px;top:40px;width:340px"><div class="head">products</div><div class="col pk"><span>id</span><em>PK</em></div><div class="col fk"><span>restaurant_id</span><em>FK</em></div><div class="col fk"><span>category_id</span><em>FK</em></div><div class="col "><span>name</span><em></em></div><div class="col "><span>price</span><em>CHECK</em></div><div class="col "><span>calories</span><em>CHECK</em></div><div class="col "><span>rating</span><em>CHECK</em></div><div class="col "><span>stock</span><em>CHECK</em></div><div class="col "><span>is_available</span><em>CHECK</em></div><div class="col "><span>image_url</span><em></em></div><div class="col "><span>description</span><em></em></div><div class="col ts"><span>created_at · updated_at</span></div></div>
+<div class="table" style="left:1220px;top:600px;width:340px"><div class="head">categories</div><div class="col pk"><span>id</span><em>PK</em></div><div class="col "><span>name</span><em>UNIQUE</em></div><div class="col ts"><span>created_at · updated_at</span></div></div>
+<div class="key"><i></i>each line goes from a foreign key (○) to the id it points at (▶)</div>
+<div class="legend">
+  <div><b>ORDERS.STATUS</b><span>pending · preparing · completed · canceled</span></div>
+  <div><b>PAYMENT_STATUS · PAYMENTS.STATUS</b><span>pending · paid · failed · refunded</span></div>
+  <div><b>PAYMENT_METHOD</b><span>cash · card · wallet</span></div>
+  <div><b>USERS.ROLE</b><span>customer · admin · restaurant_owner</span></div>
+</div>
+</div>
+</body>
+</html>

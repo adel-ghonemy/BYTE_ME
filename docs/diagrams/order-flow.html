@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BYTE.ME Order Flow</title>
+<link rel="stylesheet" href="../assets/brand.css">
+<style>
+  html, body { margin: 0; background: var(--white); }
+  .canvas { width: 1600px; height: 900px; }
+  svg { display: block; }
+  .chip { font: 700 13px var(--mono); letter-spacing: 0.12em; }
+  .title { font: 600 25px var(--sans); fill: var(--ink); }
+  .sub { font: 400 16px var(--mono); fill: var(--ink-soft); }
+  .lane { font: 700 14px var(--mono); letter-spacing: 0.16em; fill: var(--ink-soft); }
+  .small { font: 500 15px var(--mono); fill: var(--ink-soft); }
+  .row { font: 500 18px var(--sans); fill: var(--ink); }
+  .row-code { font: 500 16px var(--mono); fill: var(--red-dark); }
+  .state { font: 700 22px var(--mono); }
+</style>
+</head>
+<body>
+<div class="canvas">
+<svg width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#0E1118"/>
+    </marker>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#D93D3E"/>
+    </marker>
+  </defs>
+
+  <!-- lane 1: the customer's screens -->
+  <rect x="20" y="20" width="1560" height="470" rx="18" fill="#F7F8FA" stroke="rgba(14,17,24,0.10)" stroke-width="2"/>
+  <text x="48" y="58" class="lane">CUSTOMER · FROM HUNGRY TO ORDERED</text>
+
+  <g>
+    <rect x="50" y="90" width="260" height="120" rx="12" fill="#fff" stroke="#0E1118" stroke-width="2.5"/>
+    <rect x="70" y="106" width="86" height="24" rx="5" fill="none" stroke="#3A4152" stroke-width="1.5"/>
+    <text x="113" y="123" class="chip" fill="#3A4152" text-anchor="middle">SCREEN</text>
+    <text x="180" y="165" class="title" text-anchor="middle">Home</text>
+    <text x="180" y="192" class="sub" text-anchor="middle">search · food type</text>
+  </g>
+  <g>
+    <rect x="360" y="90" width="260" height="120" rx="12" fill="#fff" stroke="#0E1118" stroke-width="2.5"/>
+    <rect x="380" y="106" width="86" height="24" rx="5" fill="none" stroke="#3A4152" stroke-width="1.5"/>
+    <text x="423" y="123" class="chip" fill="#3A4152" text-anchor="middle">SCREEN</text>
+    <text x="490" y="165" class="title" text-anchor="middle">Menu</text>
+    <text x="490" y="192" class="sub" text-anchor="middle">add to cart · stock</text>
+  </g>
+  <g>
+    <rect x="670" y="90" width="260" height="120" rx="12" fill="#fff" stroke="#0E1118" stroke-width="2.5"/>
+    <rect x="690" y="106" width="86" height="24" rx="5" fill="none" stroke="#3A4152" stroke-width="1.5"/>
+    <text x="733" y="123" class="chip" fill="#3A4152" text-anchor="middle">SCREEN</text>
+    <text x="800" y="165" class="title" text-anchor="middle">Cart &amp; checkout</text>
+    <text x="800" y="192" class="sub" text-anchor="middle">➖ ➕ · address · pay</text>
+  </g>
+  <g>
+    <rect x="980" y="90" width="260" height="120" rx="12" fill="#FFF0F0" stroke="#FF4B4C" stroke-width="3"/>
+    <rect x="1000" y="106" width="86" height="24" rx="5" fill="#FF4B4C"/>
+    <text x="1043" y="123" class="chip" fill="#fff" text-anchor="middle">ACTION</text>
+    <text x="1110" y="165" class="title" text-anchor="middle">Place order</text>
+    <text x="1110" y="192" class="sub" text-anchor="middle">checks stock again</text>
+  </g>
+  <g>
+    <rect x="1290" y="90" width="260" height="120" rx="12" fill="#fff" stroke="#0E1118" stroke-width="2.5"/>
+    <rect x="1310" y="106" width="86" height="24" rx="5" fill="none" stroke="#3A4152" stroke-width="1.5"/>
+    <text x="1353" y="123" class="chip" fill="#3A4152" text-anchor="middle">SCREEN</text>
+    <text x="1420" y="165" class="title" text-anchor="middle">My orders</text>
+    <text x="1420" y="192" class="sub" text-anchor="middle">status · total</text>
+  </g>
+
+  <line x1="312" y1="150" x2="356" y2="150" stroke="#0E1118" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="622" y1="150" x2="666" y2="150" stroke="#0E1118" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="932" y1="150" x2="976" y2="150" stroke="#0E1118" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="1242" y1="150" x2="1286" y2="150" stroke="#0E1118" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="334" y="80" class="small" text-anchor="middle">pick one</text>
+  <text x="644" y="80" class="small" text-anchor="middle">1 restaurant</text>
+
+  <!-- payment rules, under the cart -->
+  <rect x="670" y="260" width="260" height="200" rx="12" fill="#fff" stroke="rgba(14,17,24,0.25)" stroke-width="2" stroke-dasharray="7 6"/>
+  <text x="690" y="292" class="lane">PAYMENT</text>
+  <text x="690" y="332" class="row">💵 Cash</text>
+  <text x="910" y="332" class="row-code" text-anchor="end">pending</text>
+  <text x="690" y="372" class="row">💳 Card</text>
+  <text x="910" y="372" class="row-code" text-anchor="end">paid</text>
+  <text x="690" y="412" class="row">📱 Wallet</text>
+  <text x="910" y="412" class="row-code" text-anchor="end">paid</text>
+  <text x="690" y="444" class="small">details checked, never saved</text>
+  <line x1="800" y1="212" x2="800" y2="256" stroke="#3A4152" stroke-width="2" stroke-dasharray="5 5" marker-end="url(#arrow)"/>
+
+  <!-- the five saves, under place order -->
+  <rect x="980" y="260" width="570" height="200" rx="12" fill="#fff" stroke="#FF4B4C" stroke-width="2" stroke-dasharray="7 6"/>
+  <text x="1000" y="292" class="lane">SAVED IN ONE GO</text>
+  <text x="1000" y="330" class="row">1  the address</text>
+  <text x="1530" y="330" class="row-code" text-anchor="end">user_addresses</text>
+  <text x="1000" y="360" class="row">2  the order</text>
+  <text x="1530" y="360" class="row-code" text-anchor="end">orders</text>
+  <text x="1000" y="390" class="row">3  each dish in it</text>
+  <text x="1530" y="390" class="row-code" text-anchor="end">order_items</text>
+  <text x="1000" y="420" class="row">4  the payment</text>
+  <text x="1530" y="420" class="row-code" text-anchor="end">payments</text>
+  <text x="1000" y="450" class="row">5  take dishes out of stock</text>
+  <text x="1530" y="450" class="row-code" text-anchor="end">products.stock</text>
+  <line x1="1110" y1="212" x2="1110" y2="256" stroke="#D93D3E" stroke-width="2.5" marker-end="url(#arrow-red)"/>
+
+  <!-- lane 2: order status -->
+  <rect x="20" y="540" width="1560" height="340" rx="18" fill="#F7F8FA" stroke="rgba(14,17,24,0.10)" stroke-width="2"/>
+  <text x="48" y="578" class="lane">ORDER STATUS</text>
+
+  <path d="M1265,460 V515 H480 V616" fill="none" stroke="#D93D3E" stroke-width="2.5" stroke-dasharray="8 6" marker-end="url(#arrow-red)"/>
+  <text x="872" y="507" class="small" text-anchor="middle" fill="#D93D3E">every new order starts here</text>
+
+  <rect x="350" y="620" width="260" height="70" rx="35" fill="#FFF7E6" stroke="#E85D04" stroke-width="3"/>
+  <text x="480" y="663" class="state" fill="#B34700" text-anchor="middle">pending</text>
+  <rect x="750" y="620" width="260" height="70" rx="35" fill="#FFF7E6" stroke="#F48C06" stroke-width="3"/>
+  <text x="880" y="663" class="state" fill="#B34700" text-anchor="middle">preparing</text>
+  <rect x="1150" y="620" width="260" height="70" rx="35" fill="#E9F7EE" stroke="#1E8E4E" stroke-width="3"/>
+  <text x="1280" y="663" class="state" fill="#16673A" text-anchor="middle">completed</text>
+  <rect x="750" y="770" width="260" height="70" rx="35" fill="#F1F2F6" stroke="#3A4152" stroke-width="3"/>
+  <text x="880" y="813" class="state" fill="#3A4152" text-anchor="middle">canceled</text>
+
+  <line x1="612" y1="655" x2="746" y2="655" stroke="#0E1118" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="1012" y1="655" x2="1146" y2="655" stroke="#0E1118" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <path d="M480,692 V805 H746" fill="none" stroke="#3A4152" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="880" y1="692" x2="880" y2="766" stroke="#3A4152" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="679" y="640" class="small" text-anchor="middle">cooking</text>
+  <text x="1079" y="640" class="small" text-anchor="middle">delivered</text>
+
+  <text x="48" y="860" class="small">An owner or admin moves each order on “Manage orders”. The arrows are the normal path, but the dropdown allows any of the four.</text>
+  <text x="1150" y="790" class="small">The customer sees the newest status</text>
+  <text x="1150" y="814" class="small">on their “My orders” page.</text>
+</svg>
+</div>
+</body>
+</html>
