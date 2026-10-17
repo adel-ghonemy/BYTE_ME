@@ -1,10 +1,8 @@
 # BYTE.ME: Food Delivery App
 
-<mark>✏️ Student writes: one line saying what this document is for, e.g. the event or class, and the year.</mark>
+Software project documentation · Afro-Asian Forum for Innovation and Technology · Aswan Finals 2026
 
 <p align="center"><img src="assets/logo.png" alt="BYTE.ME logo" width="420"></p>
-
-> **How to use this template:** every yellow <mark>✏️</mark> box is yours to fill in. Replace the whole box with your own words. Everything else was taken from the code, so check it if you change the app. When you are done, run `python docs/build.py` to rebuild the PDF, the poster and the slides.
 
 ## 1. Project Overview | نظرة عامة على المشروع
 
@@ -12,8 +10,8 @@
 |-------|-------|
 | **Project Title** | BYTE.ME: Food Delivery App |
 | **Project Type** | Web application |
-| **Description** | <mark>✏️ Student writes: 2–3 sentences. What is BYTE.ME and what can people do with it?</mark> |
-| **Target Users** | <mark>✏️ Student writes: who will use it? (customers, restaurant owners, …)</mark> |
+| **Description** | BYTE.ME is a food delivery website, like Talabat. You pick a restaurant, look at its dishes with photos and prices, put them in your cart and place an order. Restaurant owners and admins add restaurants and dishes and move each order from pending to completed. |
+| **Target Users** | Hungry customers who want to order food, restaurant owners who want to sell online, and admins who look after the menus and orders. Guests can look around before they sign up. |
 | **Live app** | <https://byte-me.streamlit.app/register> |
 
 ### Tech Stack | التقنيات المستخدمة
@@ -36,15 +34,15 @@
 
 ## 2. Problem Statement | المشكلة
 
-<mark>✏️ Student writes: 2–3 sentences. What problem does BYTE.ME solve? Who has this problem?</mark>
+Ordering food by phone is slow. The line is often busy, you can't see the menu or the prices, and after you hang up you don't know what is happening with your order. Hungry people in Egyptian cities face this every day, and so do small restaurants that can't build an app of their own.
 
 ### Why does it matter? | لماذا هذا مهم؟
 
-<mark>✏️ Student writes: 2–3 sentences. What happens to people when this problem isn't solved?</mark>
+When ordering is hard, people wait longer, get the wrong dish or give up and eat something else. Small restaurants lose customers to big chains just because they are harder to order from.
 
 ### How is it currently solved? | كيف تُحل المشكلة حاليًا؟
 
-<mark>✏️ Student writes: 2–3 sentences. What do people use today (calling the restaurant, other apps, …), and what is still hard about it?</mark>
+Most people call the restaurant or use a big delivery app. Calling means busy lines and no menu in front of you. Big apps work well, but a small local restaurant has to pay and go through a long sign-up to join them.
 
 ## 3. Technical Architecture | البنية التقنية
 
@@ -237,73 +235,73 @@ These shortcuts were taken on purpose to keep the code simple. The full list is 
 
 Through building this project, a student can practice:
 
-1. <mark>✏️ Student writes: something you learned about building web pages with Streamlit</mark>
-2. <mark>✏️ Student writes: something you learned about databases and SQL</mark>
-3. <mark>✏️ Student writes: something you learned about logins and who can see which page</mark>
-4. <mark>✏️ Student writes: something you learned about checking what people type into forms</mark>
-5. <mark>✏️ Student writes: one more thing you learned</mark>
+1. Building a web app in pure Python with Streamlit: forms, buttons, columns, and `st.session_state` to remember who is logged in and what is in the cart.
+2. Designing a database with 8 tables linked by ids, and reading and writing it with plain SQL (`SELECT`, `INSERT`, `UPDATE`).
+3. Logging people in and showing each role (guest, customer, restaurant owner, admin) only the pages they are allowed to open, using `st.navigation`.
+4. Checking what people type with plain `if`s: an 11-digit phone number, a 16-digit card number, an email that isn't already used, and enough stock for each dish.
+5. Following one order through five database steps: save the address, the order, its dishes and the payment, then take the dishes out of the stock.
 
 ### Cultural / Historical Context | السياق الثقافي
 
 | Topic | Description |
 |-------|-------------|
-| <mark>✏️ Student writes: topic, e.g. food delivery in Egypt</mark> | <mark>✏️ Student writes: 1–2 sentences</mark> |
-| <mark>✏️ Student writes: topic, e.g. Egyptian food</mark> | <mark>✏️ Student writes: 1–2 sentences</mark> |
-| <mark>✏️ Student writes: topic, e.g. paying online safely</mark> | <mark>✏️ Student writes: 1–2 sentences</mark> |
+| Food delivery in Egypt | Apps like Talabat changed how people in Egyptian cities order food: many now order on their phone instead of calling. BYTE.ME is a small, simple version that shows how such an app works inside. |
+| Egyptian cities | The demo restaurants are in Cairo, Alexandria, Giza, Mansoura and Tanta, prices are in Egyptian pounds (EGP), and phone numbers must have 11 digits like Egyptian mobile numbers. |
+| Paying safely | Many people in Egypt still pay cash on delivery, so BYTE.ME offers cash next to card and mobile wallet. It never saves card details, because keeping them safe needs real security that a school demo doesn't have. |
 
 ### Curriculum Alignment | الارتباط بالمنهج
 
 | Skill Area | What the Student Practices |
 |------------|---------------------------|
-| Problem Solving | <mark>✏️ Student writes: 1 sentence</mark> |
-| Computational Thinking | <mark>✏️ Student writes: 1 sentence</mark> |
-| Creativity | <mark>✏️ Student writes: 1 sentence</mark> |
-| Collaboration | <mark>✏️ Student writes: 1 sentence, or "built alone"</mark> |
-| Technical Writing | <mark>✏️ Student writes: 1 sentence</mark> |
+| Problem Solving | Splitting "order food online" into small screens: restaurant list, menu, cart, checkout and my orders. |
+| Computational Thinking | Turning an order into data: rows in tables linked by ids, with a status that moves step by step from pending to completed. |
+| Creativity | Designing the BYTE.ME name, the pixel-art logo with a bite taken out of it, and the banners and dish cards. |
+| Collaboration | Built alone. |
+| Technical Writing | Writing the README, this documentation and the Limits list so another student can set up and run the app. |
 
 ## 8. Marketing Plan | خطة تسويقية
 
 ### Target Audience | الجمهور المستهدف
 
-- **Primary:** <mark>✏️ Student writes: the main group of people</mark>
-- **Secondary:** <mark>✏️ Student writes: a second group</mark>
+- **Primary:** Hungry customers in Egyptian cities who order food on their phone or computer.
+- **Secondary:** Small local restaurants that want to take orders online without building their own app.
 
 ### Platforms | المنصات
 
-- <mark>✏️ Student writes: where people will use it, e.g. phone and desktop browsers</mark>
-- <mark>✏️ Student writes: where you will show it or share it</mark>
+- Phone and desktop web browsers, at <https://byte-me.streamlit.app> (nothing to install).
+- The Afro-Asian Forum for Innovation and Technology, Aswan Finals 2026, with a QR code on the poster and slides that opens the live app.
 
 ## 9. Student Worksheet | ورقة عمل الطالب
 
 ### My Project Information | معلومات مشروعي
 
-**Student Name:** <mark>✏️ Student writes: your full name</mark>  
+**Student Name:** Adel Ghonemy  
 **Project Title:** BYTE.ME: Food Delivery App
 
 ### What is your project about? | عن ماذا يتحدث مشروعك؟
 
-<mark>✏️ Student writes: 1–2 sentences in your own words</mark>
+BYTE.ME is my food delivery website, like Talabat. You choose a restaurant, add dishes to your cart and place an order.
 
 ### What problem does it solve? | ما المشكلة التي يحلها؟
 
-<mark>✏️ Student writes: 1–2 sentences in your own words</mark>
+Ordering food by phone is slow, and you can't see the menu or follow your order. BYTE.ME puts the menu, the cart and the order's status in one place.
 
 ### My Data | بياناتي
 
 **Where does data come from?**
 
-<mark>✏️ Student writes: who types it in, and what came with the demo files?</mark>
+Customers type in their own sign-up details, delivery address and orders. Restaurant owners and admins add restaurants, dishes and categories. The demo restaurants, dishes and photo links came from the SQL files in `database/`.
 
 **What data is stored?**
 
-<mark>✏️ Student writes: which tables, and what is kept in them?</mark>
+Eight tables: `users`, `restaurant`, `categories`, `products`, `orders`, `order_items`, `payments` and `user_addresses`. They keep the accounts, the restaurants, the dishes with their price and stock, each order with its dishes and status, the payments and the delivery addresses.
 
 ### What I Learned | ماذا تعلمت
 
-1. **The hardest part:** <mark>✏️ Student writes</mark>
-2. **The most fun part:** <mark>✏️ Student writes</mark>
-3. **If I had more time:** <mark>✏️ Student writes</mark>
-4. **One thing I would do differently:** <mark>✏️ Student writes</mark>
+1. **The hardest part:** The checkout. One button has to save the address, the order, its dishes and the payment, and take the dishes out of the stock, without mixing up anything.
+2. **The most fun part:** Designing the BYTE.ME logo and seeing my dishes show up with real photos.
+3. **If I had more time:** I would add real online payments, hide the passwords properly, and let each restaurant owner change only their own restaurant.
+4. **One thing I would do differently:** I would plan all the database tables before writing the screens, so I wouldn't have to change them later.
 
 ### Screenshot of My Project | لقطة من مشروعي
 
@@ -311,4 +309,4 @@ Through building this project, a student can practice:
 
 ---
 
-<mark>✏️ Student writes: team or school name · event · year</mark>
+Adel Ghonemy · Techno Future KFS · Afro-Asian Forum for Innovation and Technology · Aswan Finals 2026

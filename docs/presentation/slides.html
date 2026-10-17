@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <title>BYTE.ME Slides</title>
 <!-- 11 slides, 1280 x 720 each. Build the PDF with: python docs/build.py slides -->
-<!-- Boxes with class="todo" are for the student to write. Replace the whole <span class="todo">…</span> with your words. -->
 <link rel="stylesheet" href="../assets/brand.css">
 <style>
   @page { size: 1280px 720px; margin: 0; }
@@ -43,7 +42,8 @@
   .title-text { position: absolute; left: 72px; top: 150px; width: 640px; }
   .wordmark { font-family: var(--display); font-weight: 700; font-size: 104px; line-height: 1; margin: 18px 0 26px -4px; color: var(--paper); white-space: nowrap; }
   .wordmark .dot { color: var(--red); }
-  .tagline { margin-bottom: 18px; }
+  .tagline { margin-bottom: 18px; font-family: var(--display); font-size: 34px; line-height: 1.1; color: var(--red); }
+  .promise { font-size: 22px; line-height: 1.45; color: var(--paper); opacity: 0.94; }
   .todo { font-size: 20px; line-height: 1.5; }
 
   .cards { display: grid; gap: 22px; }
@@ -91,10 +91,12 @@
   .name-text { position: absolute; left: 560px; top: 150px; width: 620px; }
   .name-text h2 { margin-bottom: 22px; }
   .name-text .todo.block { font-size: 19px; }
+  .name-text .name-story { font-size: 19px; line-height: 1.5; }
 
   .thanks { position: absolute; left: 72px; top: 110px; width: 700px; }
   .thanks h1 { font-size: 92px; font-weight: 700; letter-spacing: -0.03em; line-height: 1; margin-bottom: 26px; }
-  .thanks .line { margin-bottom: 10px; }
+  .thanks .line { margin-bottom: 10px; font-size: 19px; }
+  .thanks .line:first-of-type { font-weight: 700; font-size: 26px; }
   .qrrow { display: flex; gap: 24px; align-items: center; margin-top: 36px; }
   .qrrow .code { background: #fff; padding: 10px; }
   .qrrow img { display: block; width: 150px; height: 150px; image-rendering: pixelated; }
@@ -118,20 +120,20 @@
   <div class="title-text">
     <div class="kicker">Food delivery · Egypt</div>
     <div class="wordmark">BYTE<span class="dot">.</span>ME</div>
-    <div class="tagline"><span class="todo">a short tagline, 2–4 words</span></div>
-    <div><span class="todo">one or two sentences: what can someone do with BYTE.ME?</span></div>
+    <div class="tagline">Food, one byte away.</div>
+    <div class="promise">Pick a restaurant, fill your cart and order in a few taps. Then follow your order from pending to completed.</div>
   </div>
-  <div class="foot"><span><b>BYTE.ME</b> · <span class="todo">event name and year</span></span><span>1</span></div>
+  <div class="foot"><span><b>BYTE.ME</b> · Afro-Asian Forum · Aswan Finals 2026</span><span>1</span></div>
 </section>
 
 <!-- 2 · The problem -->
 <section class="slide">
   <div class="kicker">01 · The problem <span class="ar">المشكلة</span></div>
-  <h2><span class="todo">a one-line headline about the problem</span></h2>
+  <h2>Ordering food by phone is slow and confusing.</h2>
   <div class="cards three">
-    <div class="card"><h3><span class="todo">problem 1, a few words</span></h3><p><span class="todo">one or two sentences</span></p></div>
-    <div class="card"><h3><span class="todo">problem 2, a few words</span></h3><p><span class="todo">one or two sentences</span></p></div>
-    <div class="card"><h3><span class="todo">problem 3, a few words</span></h3><p><span class="todo">one or two sentences</span></p></div>
+    <div class="card"><h3>Busy phone lines</h3><p>At lunch time the restaurant's phone is busy, and you have to keep calling.</p></div>
+    <div class="card"><h3>No menu in front of you</h3><p>You can't see the dishes, their photos or their prices, so you guess what to order.</p></div>
+    <div class="card"><h3>No idea where your order is</h3><p>After you hang up, you don't know if your food is being made or forgotten.</p></div>
   </div>
   <div class="foot"><span><b>BYTE.ME</b> · Food delivery</span><span>2</span></div>
 </section>
@@ -139,12 +141,12 @@
 <!-- 3 · Who it's for -->
 <section class="slide dark">
   <div class="kicker">Who it's for <span class="ar">لمن هذا التطبيق</span></div>
-  <h2><span class="todo">a headline about the people who will use it</span></h2>
+  <h2>Four kinds of people, one app.</h2>
   <div class="cards four">
-    <div class="card"><span class="num">01</span><h3><span class="todo">group of people 1</span></h3><p><span class="todo">what they need</span></p></div>
-    <div class="card"><span class="num">02</span><h3><span class="todo">group of people 2</span></h3><p><span class="todo">what they need</span></p></div>
-    <div class="card"><span class="num">03</span><h3><span class="todo">group of people 3</span></h3><p><span class="todo">what they need</span></p></div>
-    <div class="card"><span class="num">04</span><h3><span class="todo">group of people 4</span></h3><p><span class="todo">what they need</span></p></div>
+    <div class="card"><span class="num">01</span><h3>Guests</h3><p>Look at restaurants and menus before making an account.</p></div>
+    <div class="card"><span class="num">02</span><h3>Customers</h3><p>Fill a cart, pay with cash, card or wallet, and follow their orders.</p></div>
+    <div class="card"><span class="num">03</span><h3>Restaurant owners</h3><p>Add their dishes with photos, prices and stock.</p></div>
+    <div class="card"><span class="num">04</span><h3>Admins</h3><p>Add restaurants and move every order from pending to completed.</p></div>
   </div>
   <div class="foot"><span><b>BYTE.ME</b> · Food delivery</span><span>3</span></div>
 </section>
@@ -242,7 +244,7 @@
   <div class="name-text">
     <div class="kicker">Why the name <span class="ar">سر الاسم</span></div>
     <h2>BYTE.ME</h2>
-    <span class="todo block">2–4 sentences: why “BYTE.ME”? What does the logo show, and what does the name have to do with food and computers?</span>
+    <p class="name-story">“Byte” is a small piece of computer memory, and it sounds just like “bite”. The logo is a pixel-art lunch box with a bite taken out of its corner, drawn like an old computer picture. So the name mixes the two things the app is made of: food and code.</p>
   </div>
   <div class="foot"><span><b>BYTE.ME</b> · Food delivery</span><span>10</span></div>
 </section>
@@ -253,8 +255,8 @@
   <div class="tile" style="left: 860px; top: 190px; width: 320px; height: 320px;"><img src="../assets/byteme-mark.svg" alt="BYTE.ME mark"></div>
   <div class="thanks">
     <h1>Thank you.</h1>
-    <div class="line"><span class="todo">your name · team or school</span></div>
-    <div class="line"><span class="todo">event name and year · your email</span></div>
+    <div class="line">Adel Ghonemy · Techno Future KFS</div>
+    <div class="line">Afro-Asian Forum for Innovation and Technology · Aswan Finals 2026</div>
     <div class="qrrow">
       <div class="code"><img src="../assets/qr-app.svg" alt="QR code for byte-me.streamlit.app"></div>
       <p>Scan to try the live app:<br><b>byte-me.streamlit.app</b></p>
