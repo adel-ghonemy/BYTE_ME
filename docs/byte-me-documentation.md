@@ -1,6 +1,8 @@
 # BYTE.ME: Food Delivery App
 
-Software project documentation · Afro-Asian Forum for Innovation and Technology · Aswan Finals 2026
+Software project documentation · AFFIAT · Afro-Asian Forum for Innovation and Technology · Aswan Finals 2026
+
+<p align="center"><img src="assets/partners.png" alt="AFFIAT and Techno Future Kafr El Sheikh" width="320"></p>
 
 <p align="center"><img src="assets/logo.png" alt="BYTE.ME logo" width="420"></p>
 
@@ -269,7 +271,7 @@ Through building this project, a student can practice:
 ### Platforms | المنصات
 
 - Phone and desktop web browsers, at <https://byte-me.streamlit.app> (nothing to install).
-- The Afro-Asian Forum for Innovation and Technology, Aswan Finals 2026, with a QR code on the poster and slides that opens the live app.
+- The Afro-Asian Forum for Innovation and Technology (AFFIAT), Aswan Finals 2026, with a QR code on the poster and slides that opens the live app.
 
 ## 9. Student Worksheet | ورقة عمل الطالب
 
@@ -309,4 +311,4 @@ Eight tables: `users`, `restaurant`, `categories`, `products`, `orders`, `order_
 
 ---
 
-Adel Ghonemy · Techno Future KFS · Afro-Asian Forum for Innovation and Technology · Aswan Finals 2026
+Adel Ghonemy · Techno Future KFS · AFFIAT · Afro-Asian Forum for Innovation and Technology · Aswan Finals 2026

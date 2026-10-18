@@ -92,9 +92,23 @@
   .qr img { display: block; width: 120mm; height: 120mm; image-rendering: pixelated; }
   .qr p { font-family: var(--mono); font-size: 8.5mm; color: var(--ink-soft); margin-top: 4mm; line-height: 1.4; }
   .qr p b { color: var(--ink); }
+
+  /* AFFIAT band: the forum and academy logos across the top. The poster below is shrunk a little to make room. */
+  .affiat-page { position: relative; width: 1010mm; height: 2010mm; overflow: hidden; background: #FFFFFF; }
+  .affiat-band { position: absolute; left: 0; top: 0; width: 1010mm; height: 110mm; background: #FFFFFF;
+                 display: flex; align-items: center; justify-content: center; gap: 22mm; border-bottom: 1.2mm solid #E3E6EA; }
+  .affiat-band img { display: block; height: 86mm; width: auto; }
+  .affiat-band .affiat-text { font-family: 'Space Grotesk', Arial, sans-serif; color: #1B2A4A; line-height: 1.15; }
+  .affiat-band .affiat-text b { display: block; font-size: 20mm; font-weight: 700; letter-spacing: 0.01em; }
+  .affiat-band .affiat-text span { display: block; font-size: 15mm; margin-top: 3mm; color: #3A4A66; }
+  .affiat-body { position: absolute; left: 0; top: 110mm; width: 1010mm; height: 1900mm; }
+  .affiat-body > .poster { transform: scale(0.94527); transform-origin: top center; }
 </style>
 </head>
 <body>
+<div class="affiat-page">
+<div class="affiat-band"><img src="../assets/partners.png" alt="AFFIAT and Techno Future Kafr El Sheikh"><div class="affiat-text"><b>Afro-Asian Forum for Innovation and Technology</b><span>AFFIAT · Aswan Finals 2026</span></div></div>
+<div class="affiat-body">
 <div class="poster">
 
   <div class="hero">
@@ -183,7 +197,7 @@
       <div class="label">Built with</div>
       <div class="chips"><span>Python</span><span>Streamlit</span><span>SQLite</span><span>HTML + CSS</span></div>
       <div class="who">Adel Ghonemy · Techno Future KFS</div>
-      <div class="meta">Afro-Asian Forum for Innovation and Technology · Aswan Finals 2026</div>
+      <div class="meta">AFFIAT · Afro-Asian Forum for Innovation and Technology · Aswan Finals 2026</div>
       <div class="note">A school demo: no real payments, and card details are never saved.</div>
     </div>
     <div class="qr">
@@ -192,6 +206,8 @@
     </div>
   </div>
 
+</div>
+</div>
 </div>
 </body>
 </html>
