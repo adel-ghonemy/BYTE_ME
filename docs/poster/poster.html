@@ -94,19 +94,25 @@
   .qr p b { color: var(--ink); }
 
 
-  /* AFFIAT badge: the forum and academy logos, top-left in the header, above the kicker. */
-  .hero .affiat-badge { position: absolute; left: 60mm; top: 16mm; z-index: 5; display: flex; align-items: center; gap: 8mm;
-                        background: #FFFFFF; border-radius: 8mm; padding: 5mm 9mm; box-shadow: 0 2mm 8mm rgba(0,0,0,0.28); }
-  .hero .affiat-badge img { display: block; height: 60mm; width: auto; }
-  .hero .affiat-badge span { font-family: 'Space Grotesk', Arial, sans-serif; font-weight: 700; font-size: 12mm; line-height: 1.2;
-                             color: #1B2A4A; border-left: 0.8mm solid #D5DAE0; padding-left: 8mm; white-space: nowrap; }
+  /* AFFIAT logos. Header: an eyebrow row above the kicker, in the kicker's own font and colour.
+     Footer: a 'Presented at' block with the logos in full colour. */
+  .hero .affiat-eyebrow { position: absolute; left: 60mm; top: 24mm; z-index: 5; display: flex; align-items: center; gap: 8mm; }
+  .hero .affiat-eyebrow img.e { display: block; height: 40mm; width: auto; }
+  .hero .affiat-eyebrow img.t { display: block; height: 19mm; width: auto; }
+  .hero .affiat-eyebrow i { display: block; width: 0.5mm; height: 30mm; background: currentColor; opacity: 0.35; }
+  .hero .affiat-eyebrow .kicker { display: block; margin: 0; font-size: 10.5mm; letter-spacing: 0.18em; white-space: nowrap; }
+  .affiat-presented { display: flex; flex-direction: column; align-items: flex-start; gap: 4mm; flex: none; margin: 0 14mm; }
+  .affiat-presented img { display: block; height: 44mm; width: auto; }
+  .affiat-presented .row { display: flex; align-items: center; gap: 7mm; }
+  .affiat-presented .row img.e { height: 40mm; }
+  .affiat-presented .row img.t { height: 19mm; }
 </style>
 </head>
 <body>
 <div class="poster">
 
   <div class="hero">
-    <div class="affiat-badge"><img src="../assets/partners.png" alt="AFFIAT and Techno Future Kafr El Sheikh"><span>AFFIAT<br>Aswan Finals 2026</span></div>
+    <div class="affiat-eyebrow"><img class="e" src="../assets/affiat-emblem.png" alt="AFFIAT emblem"><img class="t" src="../assets/technofuture-white.png" alt="Techno Future Kafr El Sheikh"><i></i><span class="kicker">AFFIAT · Aswan Finals 2026</span></div>
     <div class="texture">
       <span class="en">PIZZA</span><span class="ar">بيتزا</span><span class="en">BURGER</span><span class="ar">برجر</span><span class="en">SUSHI</span>
       <span class="ar">سوشي</span><span class="en">GRILL</span><span class="ar">مشويات</span><span class="en">COLA</span><span class="ar">كشري</span>
@@ -195,6 +201,7 @@
       <div class="meta">AFFIAT · Afro-Asian Forum for Innovation and Technology · Aswan Finals 2026</div>
       <div class="note">A school demo: no real payments, and card details are never saved.</div>
     </div>
+    <div class="affiat-presented"><div class="label">Presented at</div><img src="../assets/partners.png" alt="AFFIAT and Techno Future Kafr El Sheikh"></div>
     <div class="qr">
       <div class="code"><img src="../assets/qr-app.svg" alt="QR code for byte-me.streamlit.app"></div>
       <p>Scan to try it<br><b>byte-me.streamlit.app</b></p>
